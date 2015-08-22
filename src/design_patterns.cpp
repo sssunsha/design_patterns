@@ -7,12 +7,15 @@
 //============================================================================
 
 #include "include.h"
+
 #include "./creational/factory_method.h"
 #include "./creational/simple_factory.h"
 #include "./creational/abstract_factory.h"
 #include "./creational/singleton.h"
 #include "./creational/prototype.h"
 #include "./creational/builder.h"
+
+#include "./structal/adapter.h"
 using namespace std;
 
 int main() {
@@ -36,6 +39,7 @@ void setup()
 		cout << "singleton (单例模式) ----------------------------------------- 4"<<endl;
 		cout << "prototype (原型模式) ----------------------------------------- 5" << endl;
 		cout << "builder (建造者模式) ----------------------------------------- 6" << endl;
+		cout << "adapter (适配器模式) ----------------------------------------- 7" << endl;
 		cout << "exit --------------------------------------------------------- 0"<< endl;
 		cin >> index;
 		switch(index)
@@ -77,6 +81,12 @@ void setup()
 			builder_setup();
 			builder_run();
 			builder_clean();
+			break;
+		case 7:
+			cout << "start the adapter design pattern show" << endl;
+			adapter_setup();
+			adapter_run();
+			adapter_clean();
 			break;
 
 		default:
