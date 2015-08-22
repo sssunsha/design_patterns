@@ -17,6 +17,7 @@
 
 #include "./structal/adapter.h"
 #include "./structal/bridge.h"
+#include "./structal/composite.h"
 using namespace std;
 
 int main() {
@@ -42,6 +43,7 @@ void setup()
 		cout << "builder (建造者模式) ----------------------------------------- 6" << endl;
 		cout << "adapter (适配器模式) ----------------------------------------- 7" << endl;
 		cout << "bridge (桥梁模式) -------------------------------------------- 8" << endl;
+		cout << "composite (组合模式) -------------------------------------------- 9" << endl;
 		cout << "exit --------------------------------------------------------- 0"<< endl;
 		cin >> index;
 		switch(index)
@@ -95,6 +97,12 @@ void setup()
 			bridge_setup();
 			bridge_run();
 			bridge_clean();
+			break;
+		case 9:
+			cout << "start the composite design pattern show" << endl;
+			composite_setup();
+			composite_run();
+			composite_clean();
 			break;
 
 		default:
