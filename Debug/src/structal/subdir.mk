@@ -4,13 +4,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/structal/adapter.cpp 
+../src/structal/adapter.cpp \
+../src/structal/bridge.cpp 
 
 OBJS += \
-./src/structal/adapter.o 
+./src/structal/adapter.o \
+./src/structal/bridge.o 
 
 CPP_DEPS += \
-./src/structal/adapter.d 
+./src/structal/adapter.d \
+./src/structal/bridge.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

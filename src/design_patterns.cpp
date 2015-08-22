@@ -16,6 +16,7 @@
 #include "./creational/builder.h"
 
 #include "./structal/adapter.h"
+#include "./structal/bridge.h"
 using namespace std;
 
 int main() {
@@ -40,6 +41,7 @@ void setup()
 		cout << "prototype (原型模式) ----------------------------------------- 5" << endl;
 		cout << "builder (建造者模式) ----------------------------------------- 6" << endl;
 		cout << "adapter (适配器模式) ----------------------------------------- 7" << endl;
+		cout << "bridge (桥梁模式) -------------------------------------------- 8" << endl;
 		cout << "exit --------------------------------------------------------- 0"<< endl;
 		cin >> index;
 		switch(index)
@@ -87,6 +89,12 @@ void setup()
 			adapter_setup();
 			adapter_run();
 			adapter_clean();
+			break;
+		case 8:
+			cout << "start the bridge design pattern show" << endl;
+			bridge_setup();
+			bridge_run();
+			bridge_clean();
 			break;
 
 		default:
