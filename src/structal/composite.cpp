@@ -23,13 +23,67 @@
  *
  */
 #include "composite.h"
+using namespace std;
+
+
 void composite_setup()
 {
-
+	cout << endl;
+	cout << "welcome to the demo for composite design pattern" << endl;
+	cout << endl;
 }
 void composite_run()
 {
+	cout << "create the 2 view group and 4 view" << endl;
+	cout << endl;
+	string str1 = "view1";
+	string str2 = "view2";
+	string str3 = "view3";
+	string str4 = "view4";
+	string str5 = "view5";
 
+	view* v1 = new view(str1);
+	view* v2 = new view(str2);
+	view* v3 = new view(str3);
+	view* v4 = new view(str4);
+	view* v5 = new view(str5);
+
+	viewGroup* g1 = new viewGroup();
+	viewGroup* g2 = new viewGroup();
+
+	cout << "insert view 1, view 2 and view3 to the group 1"<< endl;
+	g1->addChild(v1);
+	g1->addChild(v2);
+	g1->addChild(v3);
+
+	cout << "insert view 4 to the group 2"<< endl;
+	g2->addChild(v4);
+
+	cout << "insert view 5, view group 1 and view group 2 to the window" << endl;
+
+	window* w = new viewGroup();
+	w->addChild(v5);
+	w->addChild(g1);
+	w->addChild(g2);
+
+	cout << endl;
+	cout << "draw now ..." << endl;
+	w->draw();
+
+	cout << endl;
+	cout << "now remove the view 3 from the view group of window system ..." << endl;
+	w->removeChild(v3);
+	cout << "draw again ...." << endl;
+	cout << endl;
+	w->draw();
+
+	cout << "now remove the whole group 1, that means besides view group 1, both view 1 and view 2 will be delete too" << endl;
+	w->removeChild(g1);
+	cout << "draw again ..." << endl;
+	cout << endl;
+	w->draw();
+	delete w;
+	w = NULL;
 }
 void composite_clean()
 {
@@ -37,3 +91,88 @@ void composite_clean()
 }
 
 // demo codes for composite design pattern
+
+// composite
+viewGroup::viewGroup(){
+	this->group = new vector<window*>;
+}
+
+viewGroup::~viewGroup(){
+	int i = 0;
+	for(; i < (int)group->size(); i++)
+	{
+		delete group->at(i);
+		group->at(i) = NULL;
+	}
+
+	delete group;
+	group = NULL;
+}
+
+void viewGroup::addChild(window* v){
+	// here need to think about how to check is the group or the view
+	this->group->push_back(v);
+}
+
+
+void viewGroup::removeChild(window* v){
+
+	// here need to think about how to check is the group or the view
+	for(vector<window*>::iterator it=group->begin(); it != group->end(); )
+	{
+		window* w = (window*)*it;
+		if(w == v)
+		{
+			// remove this window
+			it = group->erase(it);
+			delete w;
+			w = NULL;
+
+		}
+		else
+		{
+			// check the view count first
+			if(w->viewCount() > 0)
+			{
+				w->removeChild(v);
+			}
+			it++;
+		}
+	}
+}
+
+int viewGroup::viewCount(){
+	return group->size();
+}
+
+void viewGroup::draw(){
+	int i = 0;
+	for(; i < (int)group->size(); i++)
+	{
+		group->at(i)->draw();
+	}
+}
+
+// leaf
+void view::draw(){
+	cout << _name <<" is drawing" << endl;
+}
+
+
+ view::view(string name){
+	_name = name;
+}
+
+ void view::addChild(window* v){
+	 // do nothing for the view, this function is only useful for viewGroup
+ }
+
+ void view::removeChild(window* v){
+	 // do nothing for the view, this function is only useful for viewGroup
+ }
+
+ int view::viewCount(){
+	 // for view the view count is 0
+	 return 0;
+ }
+

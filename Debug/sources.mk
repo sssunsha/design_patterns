@@ -26,4 +26,5 @@ SUBDIRS := \
 src/structal \
 src \
 src/creational \
+src/behavioral \
 
